@@ -1,11 +1,11 @@
+import AisDecoder from '../src/ais-decoder';
 import {createReadStream} from 'fs';
 import {resolve} from 'path';
 import {createInterface} from 'readline';
-import AisDecoder from '../src/ais-decoder';
 
 const aisDecoder = new AisDecoder();
 aisDecoder.on('error', err => console.error(err));
-aisDecoder.on('data', message => console.log(message));
+aisDecoder.on('data', decodedMessage => console.log(decodedMessage));
 
 const filePath = resolve(__dirname, './messages.txt');
 const fileStream = createReadStream(filePath);
