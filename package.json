@@ -1,0 +1,29 @@
+{
+  "name": "ais-stream-decoder",
+  "version": "1.0.0",
+  "description": "AIS/NMEA decoder with native Node.js stream interface (TypeScript/JavaScript)",
+  "author": "Matthias Jaros",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "npm run test:lint",
+    "test:lint": "eslint ./src/**/*",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^12.12.6",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^3.9.7"
+  }
+}
