@@ -5,9 +5,11 @@
   "keywords": [
     "AIS",
     "NMEA",
+    "AIVDM",
     "decoder",
     "parser",
-    "stream"
+    "stream",
+    "transform"
   ],
   "author": "Matthias Jaros",
   "license": "MIT",
