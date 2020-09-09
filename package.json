@@ -2,8 +2,19 @@
   "name": "ais-stream-decoder",
   "version": "1.0.0",
   "description": "AIS/NMEA decoder with native Node.js stream interface (TypeScript/JavaScript)",
+  "keywords": [
+    "AIS",
+    "NMEA",
+    "decoder",
+    "parser",
+    "stream"
+  ],
   "author": "Matthias Jaros",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjaros/ais-decoder.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,7 +24,9 @@
     "test": "npm run test:lint",
     "test:lint": "eslint ./src/**/*",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "preversion": "npm test"
   },
   "dependencies": {},
   "devDependencies": {
