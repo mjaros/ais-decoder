@@ -16,8 +16,8 @@ class AisMessage4 extends AisMessage {
   raim: boolean;
   radio: number;
 
-  constructor(messageType: number, bitField: AisBitField) {
-    super(messageType, bitField);
+  constructor(messageType: number, channel: string, bitField: AisBitField) {
+    super(messageType, channel, bitField);
     this.year = format.year(bitField.getInt(38, 14));
     this.month = format.month(bitField.getInt(52, 4));
     this.day = format.day(bitField.getInt(56, 5));

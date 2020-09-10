@@ -22,8 +22,8 @@ class AisMessage5 extends AisMessage {
   dte: boolean;
 
   // eslint-disable-next-line max-statements
-  constructor(messageType: number, bitField: AisBitField) {
-    super(messageType, bitField);
+  constructor(messageType: number, channel: string, bitField: AisBitField) {
+    super(messageType, channel, bitField);
     this.aisVersion = bitField.getInt(38, 2);
     this.imo = bitField.getInt(40, 30);
     this.callsign = bitField.getString(70, 42);

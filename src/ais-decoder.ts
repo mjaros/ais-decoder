@@ -41,7 +41,7 @@ class AisDecoder extends Transform {
       if (sentence.isMultiPart()) {
         this.handleMultiPartSentence(sentence);
       } else {
-        this.decodePayload(sentence.payload);
+        this.decodePayload(sentence.payload, sentence.channel);
       }
 
       return callback();
@@ -61,11 +61,11 @@ class AisDecoder extends Transform {
       const payloads = this.multiPartBuffer.map(
         multiPartSentence => multiPartSentence.payload
       );
-      this.decodePayload(payloads.join(''));
+      this.decodePayload(payloads.join(''), sentence.channel);
     }
   }
 
-  decodePayload(payload: string): void {
+  decodePayload(payload: string, channel: string): void {
     const bitField = new AisBitField(payload);
     const messageType = bitField.getInt(0, 6);
 
@@ -75,13 +75,13 @@ class AisDecoder extends Transform {
       case 1:
       case 2:
       case 3:
-        decodedMessage = new AisMessage123(messageType, bitField);
+        decodedMessage = new AisMessage123(messageType, channel, bitField);
         break;
       case 4:
-        decodedMessage = new AisMessage4(messageType, bitField);
+        decodedMessage = new AisMessage4(messageType, channel, bitField);
         break;
       case 5:
-        decodedMessage = new AisMessage5(messageType, bitField);
+        decodedMessage = new AisMessage5(messageType, channel, bitField);
         break;
     }
 
