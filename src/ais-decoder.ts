@@ -1,12 +1,13 @@
 import {Transform, TransformOptions} from 'stream';
 
+import {DecodingError} from './errors';
 import AisSentence from './ais-sentence';
 import AisBitField from './ais-bitfield';
 import AisMessage from './messages/ais-message';
 import AisMessage123 from './messages/ais-message-123';
 import AisMessage4 from './messages/ais-message-4';
 import AisMessage5 from './messages/ais-message-5';
-import {DecodingError} from './errors';
+import AisMessage18 from './messages/ais-message-18';
 
 interface AisDecoderOptions {
   silent?: boolean;
@@ -65,6 +66,7 @@ class AisDecoder extends Transform {
     }
   }
 
+  // eslint-disable-next-line complexity
   decodePayload(payload: string, channel: string): void {
     const bitField = new AisBitField(payload);
     const messageType = bitField.getInt(0, 6);
@@ -82,6 +84,9 @@ class AisDecoder extends Transform {
         break;
       case 5:
         decodedMessage = new AisMessage5(messageType, channel, bitField);
+        break;
+      case 18:
+        decodedMessage = new AisMessage18(messageType, channel, bitField);
         break;
     }
 
