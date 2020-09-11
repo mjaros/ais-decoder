@@ -1,6 +1,6 @@
 {
   "name": "ais-stream-decoder",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "AIS/NMEA decoder with native Node.js stream interface (TypeScript/JavaScript)",
   "keywords": [
     "AIS",
