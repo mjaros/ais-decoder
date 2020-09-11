@@ -16,7 +16,7 @@ $ npm install ais-stream-decoder
 
 ## Features
 
-- Currently supports message types 1,2,3,4,5 (more to come)
+- Currently supports message types 1,2,3,4,5,18,24 (more to come)
 - Handles multi-part messages out of the box
 - Streaming API implemented as a [Node.js transform stream](https://nodejs.org/docs/latest/api/stream.html#stream_duplex_and_transform_streams)
 - Returns nicely formatted JSON messages
@@ -40,7 +40,7 @@ aisDecoder.write(nmea);
 =>
 
 ```bash
-{"type":1,"repeat":0,"mmsi":205278090,"navStatus":0,"rateOfTurn":null,"speedOverGround":8.4,"accuracy":true,"lon":4.73319,"lat":51.725665,"courseOverGround":260.1,"heading":null,"utcSecond":37,"maneuver":0,"raim":true,"radio":59916}
+{"type":1,"repeat":0,"mmsi":205278090,"navStatus":0,"rateOfTurn":null,"speedOverGround":8.4,"accuracy":true,"lon":4.73319,"lat":51.725665,"courseOverGround":260.1,"heading":null,"utcSecond":37,"specialManoeuvre":0,"raim":true,"radio":59916}
 ```
 
 ### Handles multi-part messages like a pro:
