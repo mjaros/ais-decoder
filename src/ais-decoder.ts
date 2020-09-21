@@ -60,6 +60,11 @@ class AisDecoder extends Transform {
     this.multiPartBuffer.push(sentence);
 
     if (sentence.isLastPart()) {
+      if (this.multiPartBuffer.length !== sentence.numParts) {
+        this.multiPartBuffer.length = 0;
+        throw new DecodingError('Incorrect multipart order', sentence);
+      }
+
       const payloads = this.multiPartBuffer.map(
         multiPartSentence => multiPartSentence.payload
       );
