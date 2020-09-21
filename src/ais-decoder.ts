@@ -64,6 +64,8 @@ class AisDecoder extends Transform {
         multiPartSentence => multiPartSentence.payload
       );
       this.decodePayload(payloads.join(''), sentence.channel);
+
+      this.multiPartBuffer.length = 0;
     }
   }
 
