@@ -39,7 +39,7 @@ class AisMessage5 extends AisMessage {
     this.etaHour = format.hour(bitField.getInt(283, 5));
     this.etaMinute = format.minute(bitField.getInt(288, 6));
     this.draught = format.draught(bitField.getInt(294, 8));
-    this.destination = bitField.getString(320, 120);
+    this.destination = bitField.getString(302, 120);
     this.dte = bitField.getBoolean(422, 1);
   }
 }
