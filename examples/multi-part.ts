@@ -11,4 +11,4 @@ const part2 = '!AIVDM,2,2,7,A,PBp888888888880,2*79';
 aisDecoder.write(part1);
 aisDecoder.write(part2);
 
-// {"type":5,"repeat":0,"mmsi":525200930,"aisVersion":2,"imo":9835915,"callsign":"YCKT2","name":"AKRA 102","typeAndCargo":80,"dimBow":67,"dimStern":33,"dimPort":19,"dimStarboard":1,"epfd":1,"etaMonth":9,"etaDay":7,"etaHour":16,"etaMinute":0,"draught":4.2,"destination":"MERAK            @@@","dte":false}
+// {"type":5,"repeat":0,"mmsi":525200930,"aisVersion":2,"imo":9835915,"callsign":"YCKT2","name":"AKRA 102","typeAndCargo":80,"dimBow":67,"dimStern":33,"dimPort":19,"dimStarboard":1,"epfd":1,"etaMonth":9,"etaDay":7,"etaHour":16,"etaMinute":0,"draught":4.2,"destination":"ID_MERAK","dte":false}
