@@ -59,6 +59,11 @@ class AisBitField {
       stringValue += char;
     }
 
+    const terminationPosition = stringValue.indexOf('@');
+    if (terminationPosition !== -1) {
+      stringValue = stringValue.substring(0, terminationPosition);
+    }
+
     return stringValue.trimRight();
   }
 }
