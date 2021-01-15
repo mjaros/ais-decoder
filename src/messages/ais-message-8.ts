@@ -15,8 +15,6 @@ class AisMessage8 extends AisMessage {
     if (this.dac === 200 && this.fid === 10) {
       return new AisMessage8InlandStatic(this.type, this.channel, bitField);
     }
-
-    return null;
   }
 }
 
