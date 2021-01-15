@@ -64,7 +64,11 @@ class AisSentence {
       checksum = checksum ^ checksumString.charCodeAt(i);
     }
 
-    const checksumHex = checksum.toString(16).toUpperCase();
+    let checksumHex = checksum.toString(16).toUpperCase();
+
+    if (checksumHex.length === 1) {
+      checksumHex = `0${checksumHex}`;
+    }
 
     if (checksumHex !== this.checksum) {
       throw new DecodingError('Invalid checksum', this);
