@@ -3,6 +3,7 @@
 AIS/NMEA decoder with native stream interface for [Node.js](http://nodejs.org).
 
 [![NPM Version][npm-image]][npm-url]
+![CI Tests](https://github.com/mjaros/ais-decoder/workflows/Node.js%20CI/badge.svg?branch=master)
 
 ## Installation
 
@@ -16,7 +17,7 @@ $ npm install ais-stream-decoder
 
 ## Features
 
-- Currently supports message types 1,2,3,4,5,18,24 (more to come)
+- Currently supports message types 1,2,3,4,5,18,24 (more to come) and partially supports message type 8 (inland static and voyage data)
 - Handles multi-part messages out of the box
 - Streaming API implemented as a [Node.js transform stream](https://nodejs.org/docs/latest/api/stream.html#stream_duplex_and_transform_streams)
 - Returns nicely formatted JSON messages
@@ -40,7 +41,7 @@ aisDecoder.write(nmea);
 =>
 
 ```bash
-{"type":1,"repeat":0,"mmsi":205278090,"navStatus":0,"rateOfTurn":null,"speedOverGround":8.4,"accuracy":true,"lon":4.73319,"lat":51.725665,"courseOverGround":260.1,"heading":null,"utcSecond":37,"specialManoeuvre":0,"raim":true,"radio":59916}
+{"type":1,"channel":"B","repeat":0,"mmsi":205278090,"navStatus":0,"rateOfTurn":null,"speedOverGround":8.4,"accuracy":true,"lon":4.73319,"lat":51.725665,"courseOverGround":260.1,"heading":null,"utcSecond":37,"specialManoeuvre":0,"raim":true,"radio":59916,"sentences":["!AIVDM,1,1,,B,133i;RPP1DPEbcDMV@1r:Ow:2>`<,0*41"]}
 ```
 
 ### Handles multi-part messages like a pro:
@@ -63,7 +64,7 @@ aisDecoder.write(part2);
 =>
 
 ```bash
-{"type":5,"repeat":0,"mmsi":525200930,"aisVersion":2,"imo":9835915,"callsign":"YCKT2","name":"AKRA 102","typeAndCargo":80,"dimBow":67,"dimStern":33,"dimPort":19,"dimStarboard":1,"epfd":1,"etaMonth":9,"etaDay":7,"etaHour":16,"etaMinute":0,"draught":4.2,"destination":"MERAK            @@@","dte":false}
+{"type":5,"channel":"A","repeat":0,"mmsi":525200930,"aisVersion":2,"imo":9835915,"callsign":"YCKT2","name":"AKRA 102","typeAndCargo":80,"dimBow":67,"dimStern":33,"dimPort":19,"dimStarboard":1,"epfd":1,"etaMonth":9,"etaDay":7,"etaHour":16,"etaMinute":0,"draught":4.2,"destination":"ID_MERAK","dte":false,"sentences":["!AIVDM,2,1,7,A,57lof8`2F5HeT<eC:204e86373:222222222221@8HQC16Ch0:RA7kAD,0*28","!AIVDM,2,2,7,A,PBp888888888880,2*79"]}
 ```
 
 ### Use it to read and decode NMEA line-by-line from a file:
