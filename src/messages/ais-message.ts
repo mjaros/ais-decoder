@@ -5,6 +5,7 @@ class AisMessage {
   channel: string;
   repeat: number;
   mmsi: number;
+  sentences: Array<string>;
 
   constructor(messageType: number, channel: string, bitField: AisBitField) {
     this.type = messageType;

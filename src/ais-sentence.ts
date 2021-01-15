@@ -1,7 +1,6 @@
 import {DecodingError} from './errors';
 
 class AisSentence {
-  startIndex: number;
   message: string;
   talkerId: string;
   type: string;
@@ -15,13 +14,13 @@ class AisSentence {
 
   // eslint-disable-next-line max-statements
   constructor(message: string) {
-    this.startIndex = message.indexOf('!');
+    const startIndex = message.indexOf('!');
 
-    if (this.startIndex === -1) {
+    if (startIndex === -1) {
       throw new DecodingError('Start not found', this);
     }
 
-    this.message = message.slice(this.startIndex + 1);
+    this.message = message;
 
     const messageFields = this.message.split(',');
     if (messageFields.length !== 7) {
@@ -33,8 +32,8 @@ class AisSentence {
       throw new DecodingError('Invalid suffix', this);
     }
 
-    this.talkerId = messageFields[0].substr(0, 2);
-    this.type = messageFields[0].substr(2, 5);
+    this.talkerId = messageFields[0].substr(1, 2);
+    this.type = messageFields[0].substr(3, 5);
     this.numParts = Number(messageFields[1]);
     this.partNumber = Number(messageFields[2]);
     this.partId = Number(messageFields[3]);
@@ -55,7 +54,9 @@ class AisSentence {
   }
 
   checkChecksum(): void {
-    const checksumString = this.message.split('*')[0];
+    const checksumString = this.message
+      .split('*')[0]
+      .substr(1, this.message.length);
     let checksum = 0;
 
     for (let i = 0; i < checksumString.length; i++) {

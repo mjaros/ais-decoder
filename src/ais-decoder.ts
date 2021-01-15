@@ -44,7 +44,7 @@ class AisDecoder extends Transform {
       if (sentence.isMultiPart()) {
         this.handleMultiPartSentence(sentence);
       } else {
-        this.decodePayload(sentence.payload, sentence.channel);
+        this.decodePayload(sentence.payload, sentence.channel, [sentence]);
       }
 
       return callback();
@@ -69,14 +69,22 @@ class AisDecoder extends Transform {
       const payloads = this.multiPartBuffer.map(
         multiPartSentence => multiPartSentence.payload
       );
-      this.decodePayload(payloads.join(''), sentence.channel);
+      this.decodePayload(
+        payloads.join(''),
+        sentence.channel,
+        this.multiPartBuffer
+      );
 
       this.multiPartBuffer.length = 0;
     }
   }
 
   // eslint-disable-next-line complexity
-  decodePayload(payload: string, channel: string): void {
+  decodePayload(
+    payload: string,
+    channel: string,
+    sentences: Array<AisSentence>
+  ): void {
     const bitField = new AisBitField(payload);
     const messageType = bitField.getInt(0, 6);
 
@@ -106,6 +114,7 @@ class AisDecoder extends Transform {
     }
 
     if (decodedMessage) {
+      decodedMessage.sentences = sentences.map(sentence => sentence.message);
       this.push(JSON.stringify(decodedMessage));
     }
   }
