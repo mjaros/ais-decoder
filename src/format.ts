@@ -40,6 +40,12 @@ export default {
     }
     return sog;
   },
+  inlandLengthOrBeam(lengthOrBeam: number): number {
+    return Math.round(lengthOrBeam * 0.1 * 100) / 100;
+  },
+  inlandDraught(draught: number): number {
+    return draught * 0.01;
+  },
   draught(draught: number): number {
     return draught / 10;
   },
