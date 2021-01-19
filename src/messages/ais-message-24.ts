@@ -28,8 +28,7 @@ class AisMessage24 extends AisMessage {
       this.setPartBProperties(bitField);
     } else {
       throw new DecodingError(
-        `Invalid part number '${this.partNum}' while decoding message type 24`,
-        this.sentences.join('|')
+        `Invalid part number '${this.partNum}' while decoding message type 24`
       );
     }
   }
