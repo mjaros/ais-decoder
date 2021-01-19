@@ -14,22 +14,22 @@ class AisSentence {
 
   // eslint-disable-next-line max-statements
   constructor(message: string) {
-    const startIndex = message.indexOf('!');
+    this.message = message;
+
+    const startIndex = this.message.indexOf('!');
 
     if (startIndex === -1) {
-      throw new DecodingError('Start not found', this);
+      throw new DecodingError('Start not found', this.message);
     }
-
-    this.message = message;
 
     const messageFields = this.message.split(',');
     if (messageFields.length !== 7) {
-      throw new DecodingError('Invalid length', this);
+      throw new DecodingError('Invalid length', this.message);
     }
 
     const suffix = messageFields[6].split('*');
     if (suffix.length !== 2) {
-      throw new DecodingError('Invalid suffix', this);
+      throw new DecodingError('Invalid suffix', this.message);
     }
 
     this.talkerId = messageFields[0].substr(1, 2);
@@ -71,7 +71,7 @@ class AisSentence {
     }
 
     if (checksumHex !== this.checksum) {
-      throw new DecodingError('Invalid checksum', this);
+      throw new DecodingError('Invalid checksum', this.message);
     }
   }
 }

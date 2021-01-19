@@ -29,7 +29,7 @@ class AisMessage24 extends AisMessage {
     } else {
       throw new DecodingError(
         `Invalid part number '${this.partNum}' while decoding message type 24`,
-        null
+        this.sentences.join('|')
       );
     }
   }
